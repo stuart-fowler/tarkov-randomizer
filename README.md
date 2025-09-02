@@ -1,4 +1,4 @@
-# Tarkov Randomizer (Hosted) — Gumroad Licensed (Netlify)
+# Tarkov Randomizer (Hosted) — Gumroad Licensed (Netlify) 
 
 This is a minimal, production-ready starter to host a **Tarkov randomizer web app** behind a Gumroad license gate on **Netlify**.
 
