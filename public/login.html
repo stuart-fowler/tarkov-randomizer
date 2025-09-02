@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login — Tarkov Randomizer</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body class="bg">
+  <main class="container narrow">
+    <h1>Access Tarkov Randomizer</h1>
+    <p class="lead">Enter the email used at checkout and your Gumroad license key.</p>
+
+    <form id="loginForm" class="card form">
+      <label>Email
+        <input type="email" name="email" required placeholder="your@email.com">
+      </label>
+      <label>License key
+        <input type="text" name="licenseKey" required placeholder="XXXX-XXXX-XXXX-XXXX">
+      </label>
+      <button class="button primary" type="submit">Unlock</button>
+      <p id="msg" class="muted"></p>
+    </form>
+
+    <p class="muted small">Don’t have a license? <a href="/" id="buy">Buy here</a>.</p>
+  </main>
+
+  <script>
+    const PRODUCT_URL = "https://iamosterman.gumroad.com/l/mvnixh";
+    document.getElementById('buy').href = PRODUCT_URL;
+
+    const form = document.getElementById('loginForm');
+    const msg = document.getElementById('msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = "Verifying license…";
+      const payload = { 
+        email: form.email.value.trim(), 
+        licenseKey: form.licenseKey.value.trim() 
+      };
+
+      try {
+        const res = await fetch('/.netlify/functions/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+          msg.textContent = "Success. Redirecting…";
+          window.location.href = "/app/";
+        } else {
+          msg.textContent = "Invalid license or email. Please check details.";
+        }
+      } catch (err) {
+        msg.textContent = "Network error. Try again.";
+      }
+    });
+  </script>
+</body>
+</html>

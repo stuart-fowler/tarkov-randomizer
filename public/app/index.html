@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tarkov Randomizer — App</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body class="bg">
+  <main class="container">
+    <div id="gate" class="card">
+      <p>Checking access…</p>
+    </div>
+
+    <section id="app" style="display:none">
+      <header class="toolbar">
+        <label class="badge"><input type="checkbox" id="preFlea" checked> &nbsp; Pre-flea mode</label>
+        <label class="badge"><input type="checkbox" id="pmc" checked> &nbsp; PMC</label>
+        <label class="badge"><input type="checkbox" id="scav"> &nbsp; Scav</label>
+        <label class="badge"><input type="checkbox" id="highTierAmmo"> &nbsp; Allow high-tier ammo</label>
+        <label class="badge"><input type="checkbox" id="memeItems"> &nbsp; Include meme items</label>
+        <button class="button primary" id="roll">Roll Loadout</button>
+        <button class="button" id="logout">Logout</button>
+      </header>
+
+      <div class="grid">
+        <div class="result">
+          <div class="kicker">Primary</div>
+          <h2 id="primary"></h2>
+          <div class="kicker">Ammo</div>
+          <p id="primaryAmmo" class="muted"></p>
+        </div>
+        <div class="result">
+          <div class="kicker">Secondary</div>
+          <h2 id="secondary"></h2>
+          <div class="kicker">Ammo</div>
+          <p id="secondaryAmmo" class="muted"></p>
+        </div>
+        <div class="result">
+          <div class="kicker">Armour & Rig</div>
+          <h2 id="armor"></h2>
+          <p id="rig" class="muted"></p>
+        </div>
+        <div class="result">
+          <div class="kicker">Backpack & Util</div>
+          <h2 id="backpack"></h2>
+          <p id="util" class="muted"></p>
+        </div>
+        <div class="result">
+          <div class="kicker">Meds</div>
+          <h2 id="meds"></h2>
+          <p id="stims" class="muted"></p>
+        </div>
+        <div class="result">
+          <div class="kicker">Map</div>
+          <h2 id="map"></h2>
+          <p id="modifiers" class="muted"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app/app.js" type="module"></script>
+</body>
+</html>

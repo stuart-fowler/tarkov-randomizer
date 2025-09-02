@@ -1,0 +1,24 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+# Security headers for all
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Ensure app HTML isn't cached too aggressively
+[[headers]]
+  for = "/app/*"
+  [headers.values]
+    Cache-Control = "no-store"
+
+# Simple redirects
+[[redirects]]
+  from = "/app"
+  to = "/app/"
+  status = 301
