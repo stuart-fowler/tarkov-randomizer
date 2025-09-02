@@ -3,13 +3,22 @@ async function checkAuth() {
   try {
     const res = await fetch('/.netlify/functions/auth_check');
     if (res.ok) {
+      const info = await res.json();
+
+      // Show app
       document.getElementById('gate').style.display = 'none';
       document.getElementById('app').style.display = 'block';
+
+      // --- Watermark (bottom-right badge) ---
+      const wm = document.createElement('div');
+      wm.className = 'wm';
+      wm.textContent = `Licensed to: ${info.email}`;
+      document.body.appendChild(wm);
+
       return true;
     }
-  } catch(e) {}
-  const gate = document.getElementById('gate');
-  gate.innerHTML = '<p>Not authorised. <a href="/login">Login</a></p>';
+  } catch {}
+  document.getElementById('gate').innerHTML = '<p>Not authorised. <a href="/login">Login</a></p>';
   return false;
 }
 
